@@ -49,6 +49,11 @@ const wordParagrahp = document.querySelector("#scrambledWord");
 //             addRequiredInputs(data[0]);
 //         });
 // }
+
+const displayWord = function (word) {
+    wordParagrahp.textContent = word.split('').sort(() => Math.random() - 0.5).join('');;
+}
+
 const getWord = async function () {
     try {
         const response = await fetch("https://random-word-form.herokuapp.com/random/noun/");
@@ -65,4 +70,5 @@ const getWord = async function () {
 const main = async function () {
     const [word] = await getWord();
     console.log(word);
+    displayWord(word);
 }();
