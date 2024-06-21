@@ -2,6 +2,8 @@
 
 const inputsContainer = document.querySelector("#inputsContainer");
 const wordParagrahp = document.querySelector("#scrambledWord");
+const randomBtn = document.querySelector("#randomBtn");
+const resetBtn = document.querySelector("#resetBtn");
 
 const addInputs = function (word) {
     const remainingLetters = word.split('');
@@ -64,11 +66,23 @@ const getWord = async function () {
     }
 }
 
+let word;
+
 const main = async function () {
-    const [word] = await getWord();
+    [word] = await getWord();
     console.log(word);
     displayWord(word);
     addInputs(word);
 };
 
 main();
+
+randomBtn.addEventListener("click", function () {
+    inputsContainer.innerHTML = "";
+    main();
+});
+
+resetBtn.addEventListener("click", function () {
+    inputsContainer.innerHTML = "";
+    addInputs(word);
+});   
